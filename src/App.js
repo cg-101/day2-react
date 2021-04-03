@@ -36,6 +36,11 @@ function MyFormComponent() {
     });
 
     console.log(result);
+
+    // B2:: RESET THE FORM AFTER GETTING THE OUTPUT FROM THE SERVER
+    setUsername("");
+    setPassword("");
+    setEmail("");
   };
 
   return (
