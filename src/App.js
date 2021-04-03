@@ -12,6 +12,15 @@ export default function App() {
 
 function MyFormComponent() {
   // statefull
+  const [tempList, setTempList] = useState(["AA", "BB", "CC", "DDD"]);
+  const [userList1, setUserList1] = useState([
+    { userName: "santosh", email: "santosh@fadsf.ocm", password: "@!@!" },
+    { userName: "sachin", email: "sachin@fadsf.ocm", password: "@!@!" },
+    { userName: "saurav", email: "saurav@fadsf.ocm", password: "@!@!" },
+  ]);
+
+  const [userList, setUserList] = useState([]);
+
   const [displayMessage, setDisplayMessage] = useState(false);
   const [invalidForm, setInvalidForm] = useState(false);
   const [apiCallInProgress, setApiCallInProgress] = useState(false);
@@ -50,8 +59,15 @@ function MyFormComponent() {
       url: postUrl,
       data: { title: username, body: email, userId: 1 },
     });
-
     console.log(result);
+
+    // PUT INTO THE LIST :: Dummy CRUD Simulations
+    const newUser = {
+      username: username,
+      password: password,
+      email: email,
+    };
+    setUserList([newUser, ...userList]);
 
     // B2:: Display message conditioanlly
     setDisplayMessage(true);
@@ -64,6 +80,15 @@ function MyFormComponent() {
 
     // eneable the button again
     setApiCallInProgress(false);
+  };
+
+  const deleteUser = (index) => {
+    console.log("call here....");
+    // remove specific index from the list
+    userList.splice(index, 1);
+
+    console.log(userList);
+    setUserList([...userList]);
   };
 
   return (
@@ -116,6 +141,20 @@ function MyFormComponent() {
       </div>
 
       <h3>Disaying All the User List</h3>
+      {userList.map((data, index) => (
+        <div key={index}>
+          {data.username} {data.password} {data.email}
+          <button className="btn btn-sm btn-outline-info mx-1">
+            Edit
+          </button>
+          <button
+            className="btn btn-sm btn-outline-danger"
+            onClick={() => deleteUser(index)}
+          >
+            Del
+          </button>
+        </div>
+      ))}
     </div>
   );
 }
