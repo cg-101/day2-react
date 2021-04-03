@@ -1,7 +1,12 @@
 import axios from "axios";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { decrementAction, incrementAction } from "./redux/actions";
+import {
+  decAction,
+  decrementAction,
+  incAction,
+  incrementAction,
+} from "./redux/actions";
 
 export default function App() {
   // UI :: JSX
@@ -13,19 +18,24 @@ export default function App() {
 }
 
 function HelloRedux() {
-  const state = useSelector((state) => state);
+  const state1 = useSelector((state) => state.reducer1);
+  const state2 = useSelector((state) => state.reducer2);
   const dispatch = useDispatch();
-  console.log(state);
+  console.log(state1);
 
   return (
     <div>
-      <div>Counter {state.counter}</div>
+      <div>Counter {state1.counter}</div>
       <button onClick={() => dispatch(incrementAction())}>
         INCREMENT
       </button>
       <button onClick={() => dispatch(decrementAction())}>
         DECREMENT
       </button>
+
+      <div>Counter {state2.count}</div>
+      <button onClick={() => dispatch(incAction())}>INCREMENT</button>
+      <button onClick={() => dispatch(decAction())}>DECREMENT</button>
     </div>
   );
 }

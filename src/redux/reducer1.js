@@ -1,4 +1,4 @@
-export const initialState = { counter: 10 };
+export const initialState = { counter: 10, title: "reducer 1" };
 
 export function MyReducer1(state = initialState, action) {
   switch (action.type) {
