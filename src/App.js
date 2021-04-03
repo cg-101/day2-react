@@ -12,6 +12,7 @@ export default function App() {
 
 function MyFormComponent() {
   // statefull
+  const [displayMessage, setDisplayMessage] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -37,6 +38,9 @@ function MyFormComponent() {
 
     console.log(result);
 
+    // B2:: Display message conditioanlly
+    setDisplayMessage(true);
+
     // B2:: RESET THE FORM AFTER GETTING THE OUTPUT FROM THE SERVER
     setUsername("");
     setPassword("");
@@ -46,6 +50,10 @@ function MyFormComponent() {
   return (
     <div>
       <h3>Working with Form Element</h3>
+
+      {displayMessage && (
+        <div className="alert alert-primary">Register successfully!</div>
+      )}
 
       <div>
         <input
