@@ -12,10 +12,19 @@ export default function App() {
 function MyFormComponent() {
   // statefull
   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
-  const onChangeUsername = (e) => {
-    console.log(e.target.value);
-    setUsername(e.target.value);
+  const onChangeUsername = (e) => setUsername(e.target.value);
+  const onChangePassword = (e) => setPassword(e.target.value);
+  const onChangeEmail = (e) => setEmail(e.target.value);
+
+  /**
+   * THIS has all the data
+   * About to MAKE API CALL
+   */
+  const makeRegisterApiCall = () => {
+    console.log(username, password, email);
   };
 
   return (
@@ -32,7 +41,30 @@ function MyFormComponent() {
       </div>
 
       <div>
-        <input type="password" placeholder="Enter Password" />
+        <input
+          type="password"
+          placeholder="Enter Password"
+          value={password}
+          onChange={onChangePassword}
+        />
+      </div>
+
+      <div>
+        <input
+          type="text"
+          placeholder="Enter Email"
+          value={email}
+          onChange={onChangeEmail}
+        />
+      </div>
+
+      <div>
+        <button
+          className="btn btn-sm btn-primary"
+          onClick={makeRegisterApiCall}
+        >
+          Register
+        </button>
       </div>
     </div>
   );
