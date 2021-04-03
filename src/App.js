@@ -1,12 +1,32 @@
 import axios from "axios";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { decrementAction, incrementAction } from "./redux/actions";
 
 export default function App() {
   // UI :: JSX
   return (
     <>
-      <MyFormComponent />
+      <HelloRedux />
     </>
+  );
+}
+
+function HelloRedux() {
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
+  console.log(state);
+
+  return (
+    <div>
+      <div>Counter {state.counter}</div>
+      <button onClick={() => dispatch(incrementAction())}>
+        INCREMENT
+      </button>
+      <button onClick={() => dispatch(decrementAction())}>
+        DECREMENT
+      </button>
+    </div>
   );
 }
 
