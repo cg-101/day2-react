@@ -13,6 +13,7 @@ export default function App() {
 function MyFormComponent() {
   // statefull
   const [displayMessage, setDisplayMessage] = useState(false);
+  const [invalidForm, setInvalidForm] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -27,6 +28,16 @@ function MyFormComponent() {
    */
   const makeRegisterApiCall = async () => {
     console.log(username, password, email);
+
+    // VALIDATION AT THE BEGINING
+    if (username === "" || password == "" || email == "") {
+      setInvalidForm(true);
+
+      // return, no furterh processing
+      return;
+    } else {
+      setInvalidForm(false);
+    }
 
     // FAKE
     const postUrl = "https://jsonplaceholder.typicode.com/posts";
@@ -81,6 +92,10 @@ function MyFormComponent() {
           onChange={onChangeEmail}
         />
       </div>
+
+      {invalidForm && (
+        <div className="alert alert-danger">Form is Invalid!!</div>
+      )}
 
       <div>
         <button
