@@ -91,6 +91,13 @@ function MyFormComponent() {
     setUserList([...userList]);
   };
 
+  const editUser = (inputData) => {
+    console.log(inputData);
+    setUsername(inputData.username);
+    setPassword(inputData.password);
+    setEmail(inputData.email);
+  };
+
   return (
     <div>
       <h3>Working with Form Element</h3>
@@ -144,7 +151,10 @@ function MyFormComponent() {
       {userList.map((data, index) => (
         <div key={index}>
           {data.username} {data.password} {data.email}
-          <button className="btn btn-sm btn-outline-info mx-1">
+          <button
+            className="btn btn-sm btn-outline-info mx-1"
+            onClick={() => editUser(data)}
+          >
             Edit
           </button>
           <button
