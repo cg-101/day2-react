@@ -51,6 +51,7 @@ function MyFormComponent() {
 
     // B2:: Display message conditioanlly
     setDisplayMessage(true);
+    setTimeout(() => setDisplayMessage(false), 5000);
 
     // B2:: RESET THE FORM AFTER GETTING THE OUTPUT FROM THE SERVER
     setUsername("");
