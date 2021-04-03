@@ -14,6 +14,7 @@ function MyFormComponent() {
   // statefull
   const [displayMessage, setDisplayMessage] = useState(false);
   const [invalidForm, setInvalidForm] = useState(false);
+  const [apiCallInProgress, setApiCallInProgress] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -39,6 +40,9 @@ function MyFormComponent() {
       setInvalidForm(false);
     }
 
+    // Diable multiple Click
+    setApiCallInProgress(true);
+
     // FAKE
     const postUrl = "https://jsonplaceholder.typicode.com/posts";
     const result = await axios({
@@ -57,6 +61,9 @@ function MyFormComponent() {
     setUsername("");
     setPassword("");
     setEmail("");
+
+    // eneable the button again
+    setApiCallInProgress(false);
   };
 
   return (
@@ -102,6 +109,7 @@ function MyFormComponent() {
         <button
           className="btn btn-sm btn-primary"
           onClick={makeRegisterApiCall}
+          disabled={apiCallInProgress}
         >
           Register
         </button>
