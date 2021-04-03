@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 
 export default function App() {
@@ -23,8 +24,18 @@ function MyFormComponent() {
    * THIS has all the data
    * About to MAKE API CALL
    */
-  const makeRegisterApiCall = () => {
+  const makeRegisterApiCall = async () => {
     console.log(username, password, email);
+
+    // FAKE
+    const postUrl = "https://jsonplaceholder.typicode.com/posts";
+    const result = await axios({
+      method: "POST",
+      url: postUrl,
+      data: { title: username, body: email, userId: 1 },
+    });
+
+    console.log(result);
   };
 
   return (
